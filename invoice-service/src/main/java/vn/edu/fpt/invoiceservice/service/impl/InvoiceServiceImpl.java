@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import vn.edu.fpt.invoiceservice.client.CustomerClient;
-import vn.edu.fpt.invoiceservice.client.TrackClient;
+import vn.edu.fpt.invoiceservice.client.CatalogClient;
 import vn.edu.fpt.invoiceservice.client.dto.CustomerClientResponse;
 import vn.edu.fpt.invoiceservice.client.dto.TrackClientResponse;
 import vn.edu.fpt.invoiceservice.dto.request.InvoiceLineRequest;
@@ -27,7 +27,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
 
     private final InvoiceRepository invoiceRepository;
     private final CustomerClient customerClient;
-    private final TrackClient trackClient;
+    private final CatalogClient catalogClient;
 
     @Override
     @Transactional(readOnly = true)
@@ -138,7 +138,7 @@ public class InvoiceServiceImpl implements IInvoiceService {
         for (InvoiceLineRequest request : requests) {
 
             TrackClientResponse track =
-                    trackClient.findById(
+                    catalogClient.findById(
                             request.trackId()
                     );
 

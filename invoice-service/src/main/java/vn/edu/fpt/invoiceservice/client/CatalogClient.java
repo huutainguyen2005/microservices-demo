@@ -9,7 +9,7 @@ import vn.edu.fpt.invoiceservice.client.dto.TrackClientResponse;
         name = "catalog-service",
         url = "${CATALOG_SERVICE_URL}"
 )
-public interface TrackClient {
+public interface CatalogClient {
 
     @GetMapping("/api/v1/tracks/{id}")
     TrackClientResponse findById(
