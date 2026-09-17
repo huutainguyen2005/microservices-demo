@@ -3,10 +3,10 @@ spring:
     name: catalog-service
 
   datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=chinook_catalog;encrypt=false
+    username: sa
+    password: 123
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://${DB_HOST}:${DB_PORT};databaseName=${CATALOG_DB_NAME};encrypt=true;trustServerCertificate=true
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
@@ -30,9 +30,3 @@ springdoc:
 
 server:
   port: 8081
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics

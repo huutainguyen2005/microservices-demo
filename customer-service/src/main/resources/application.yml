@@ -3,9 +3,9 @@ spring:
     name: customer-service
 
   datasource:
-    url: jdbc:sqlserver://${DB_HOST}:${DB_PORT};databaseName=${CUSTOMER_DB_NAME};encrypt=true;trustServerCertificate=true
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:sqlserver://localhost:1433;databaseName=chinook_customer;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: 123
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   jpa:
@@ -30,9 +30,3 @@ springdoc:
 
 server:
   port: 8082
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics

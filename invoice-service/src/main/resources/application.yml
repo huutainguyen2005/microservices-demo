@@ -3,9 +3,9 @@ spring:
     name: invoice-service
 
   datasource:
-    url: jdbc:sqlserver://${DB_HOST}:${DB_PORT};databaseName=${INVOICE_DB_NAME};encrypt=true;trustServerCertificate=true
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:sqlserver://localhost:1433;databaseName=chinook_invoice;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: 123
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   jpa:
@@ -16,6 +16,21 @@ spring:
       hibernate:
         format_sql: true
         physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 2000
+            read-timeout: 2000
+
+# application.properties
+# app.clients.customer-url=
+app:
+  clients:
+    customer-url: http://localhost:8082
+    catalog-url: http://localhost:8081
 
 logging:
   level:
@@ -30,16 +45,3 @@ springdoc:
 
 server:
   port: 8083
-
-services:
-  customer:
-    url: ${CUSTOMER_SERVICE_URL}
-
-  catalog:
-    url: ${CATALOG_SERVICE_URL}
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics
