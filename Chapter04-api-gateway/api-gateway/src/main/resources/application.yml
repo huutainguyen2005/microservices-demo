@@ -4,7 +4,8 @@ spring:
   cloud:
     gateway:
       server:
-        webmvc:
+#        webmvc:  # dùng cho WEBMVC (servlet-based) blocking
+        webflux: # dùng cho WEBFLUX (reactive) non-blocking
           routes:
             # CATALOG -> INVOICE
             - id: catalog-invoice-service

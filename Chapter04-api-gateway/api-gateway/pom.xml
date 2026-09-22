@@ -35,9 +35,16 @@
     </dependencyManagement>
 
     <dependencies>
+<!--        WEBMVC (servlet-based) blocking -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-gateway-server-webmvc</artifactId>-->
+<!--        </dependency>-->
+
+<!--        WEBFLUX (reactive) non-blocking -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway-server-webmvc</artifactId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
