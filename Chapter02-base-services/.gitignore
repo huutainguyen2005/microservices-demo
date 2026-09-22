@@ -1,0 +1,89 @@
+# =========================
+# IDE
+# =========================
+.idea/
+*.iml
+*.iws
+*.ipr
+
+.vscode/
+.classpath
+.project
+.settings/
+
+# =========================
+# Maven
+# =========================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# =========================
+# Gradle
+# =========================
+.gradle/
+build/
+
+# =========================
+# Spring Boot
+# =========================
+*.log
+*.log.*
+logs/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Temporary / Backup
+# =========================
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# =========================
+# Java
+# =========================
+*.class
+hs_err_pid*
+replay_pid*
+
+# =========================
+# Test / Coverage
+# =========================
+.coverage/
+jacoco.exec
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Local DB / Database files
+# =========================
+*.mdf
+*.ndf
+*.ldf
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Generated files
+# =========================
+generated/
+out/
