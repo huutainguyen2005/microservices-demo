@@ -11,9 +11,9 @@ spring:
             - id: catalog-invoice-service
               uri: lb://INVOICE-SERVICE
               predicates:
-                - Path=/api/v1/catalog/invoices
+                - Path=/api/v1/catalog/invoices/**
               filters:
-                - RewritePath=/api/v1/catalog/invoices, /api/v1/invoices
+                - RewritePath=/api/v1/catalog/invoices/?(?<segment>.*), /api/v1/invoices/$\{segment}
 
             # CATALOG SERVICE
             - id: catalog-service
