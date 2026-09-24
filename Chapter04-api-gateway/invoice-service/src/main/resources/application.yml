@@ -27,10 +27,17 @@ spring:
 
 # application.properties
 # app.clients.customer-url=
-app:
-  clients:
-    customer-url: http://localhost:8082
-    catalog-url: http://localhost:8081
+#app:
+#  clients:
+#    customer-url: http://localhost:8082
+#    catalog-url: http://localhost:8081
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
 logging:
   level:

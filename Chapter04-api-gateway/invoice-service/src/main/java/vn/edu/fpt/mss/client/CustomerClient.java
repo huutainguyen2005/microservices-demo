@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import vn.edu.fpt.mss.dto.client.CustomerInfo;
 
-@FeignClient(name = "customer-service", url = "${app.clients.customer-url}")
+@FeignClient(name = "customer-service")
 public interface CustomerClient {
 
     @GetMapping("/api/v1/customers/{id}")

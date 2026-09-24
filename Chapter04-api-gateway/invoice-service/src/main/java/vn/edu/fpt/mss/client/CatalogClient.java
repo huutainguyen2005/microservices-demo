@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import vn.edu.fpt.mss.dto.client.TrackInfo;
 
-@FeignClient(name = "catalog-service", url = "${app.clients.catalog-url}")
+@FeignClient(name = "catalog-service")
 public interface CatalogClient {
 
     @GetMapping("/api/v1/tracks/{id}")
