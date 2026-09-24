@@ -1,0 +1,8 @@
+# application.yml         -> gốc config
+# application-{...}.yml   -> extend cái gốc và apply cái mới override theo file
+
+# vd application-staging -> profile=staging
+#    application-prod    -> profile=prod
+
+server:
+  port: 8091

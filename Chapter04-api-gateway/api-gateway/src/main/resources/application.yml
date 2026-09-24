@@ -8,8 +8,8 @@ spring:
         webflux: # dùng cho WEBFLUX (reactive) non-blocking
           routes:
             # CATALOG -> INVOICE
-            - id: catalog-invoice-service
-              uri: lb://INVOICE-SERVICE
+            - id: catalog-invoice-service # vai tro labebl/tag
+              uri: lb://INVOICE-SERVICE   # QUAN TRONG
               predicates:
                 - Path=/api/v1/catalog/invoices/**
               filters:
