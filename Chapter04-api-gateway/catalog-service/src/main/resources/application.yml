@@ -1,40 +1,50 @@
+#spring:
+#  application:
+#    name: catalog-service
+#
+#  config:
+#    import: optional:configserver:http://localhost:8888
+#
+#  datasource:
+#    url: jdbc:sqlserver://localhost:1433;databaseName=chinook_catalog;encrypt=false
+#    username: sa
+#    password: 123
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+#    open-in-view: false
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+## Graceful shutdown
+#
+#logging:
+#  level:
+#    org.hibernate.SQL: debug
+#    org.hibernate.orm.jdbc.bind: trace
+#
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui.html
+#  api-docs:
+#    path: /v3/api-docs
+#
+#server:
+#  port: 8081
+
 spring:
   application:
     name: catalog-service
 
-  datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=chinook_catalog;encrypt=false
-    username: sa
-    password: 123
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-
-  jpa:
-    hibernate:
-      ddl-auto: none
-    open-in-view: false
-    properties:
-      hibernate:
-        format_sql: true
-        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-# Graceful shutdown
-
-logging:
-  level:
-    org.hibernate.SQL: debug
-    org.hibernate.orm.jdbc.bind: trace
-
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-  api-docs:
-    path: /v3/api-docs
-
-server:
-  port: 8081
+  config:
+    import: optional:configserver:http://localhost:8888
