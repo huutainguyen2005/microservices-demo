@@ -1,0 +1,77 @@
+
+services:
+  catalog-db:
+    image: postgres:16
+    container_name: catalog-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: catalog
+      POSTGRES_USER: cataloguser
+      POSTGRES_PASSWORD: ${CATALOG_DB_PASSWORD:-123456}
+    ports:
+      - "5432:5432"
+    volumes:
+      - catalog-db-data:/var/lib/postgresql/data
+    networks:
+      - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cataloguser -d catalog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  eureka-server:
+    build:
+      context: ./eureka-server
+    image: eureka-server:0.0.1
+    container_name: eureka-server
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+
+  catalog-service:
+    build:
+      context: ./catalog-service
+    image: catalog-service:0.0.1
+    container_name: catalog-service
+    restart: unless-stopped
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://catalog-db:5432/catalog
+      SPRING_DATASOURCE_USERNAME: cataloguser
+      SPRING_DATASOURCE_PASSWORD: ${CATALOG_DB_PASSWORD:-123456}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    ports:
+      - "8081:8081"
+    depends_on:
+      catalog-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    networks:
+      - microservices-network
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    image: api-gateway:0.0.1
+    container_name: api-gateway
+    restart: unless-stopped
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+      - catalog-service
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge
+
+volumes:
+  catalog-db-data:
+    name: catalog-db-data

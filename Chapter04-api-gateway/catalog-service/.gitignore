@@ -2,3 +2,11 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 .idea/
 *.iml
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+**/target/

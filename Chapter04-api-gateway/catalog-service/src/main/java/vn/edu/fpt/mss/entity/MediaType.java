@@ -18,14 +18,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "MediaType")
+@Table(name = "mediaType")
 public class MediaType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MediaTypeId")
+    @Column(name = "mediaTypeId")
     private Integer mediaTypeId;
 
-    @Column(name = "Name", length = 120)
+    @Column(name = "name", length = 120)
     private String name;
 }

@@ -18,14 +18,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "Artist")
+@Table(name = "artist")
 public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ArtistId")
+    @Column(name = "artistId")
     private Integer artistId;
 
-    @Column(name = "Name", length = 120)
+    @Column(name = "name", length = 120)
     private String name;
 }

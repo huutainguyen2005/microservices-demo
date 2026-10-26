@@ -1,50 +1,51 @@
-#spring:
-#  application:
-#    name: catalog-service
-#
-#  config:
-#    import: optional:configserver:http://localhost:8888
-#
-#  datasource:
-#    url: jdbc:sqlserver://localhost:1433;databaseName=chinook_catalog;encrypt=false
-#    username: sa
-#    password: 123
-#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#
-#  jpa:
-#    hibernate:
-#      ddl-auto: none
-#    open-in-view: false
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#
-#eureka:
-#  instance:
-#    prefer-ip-address: true
-#  client:
-#    service-url:
-#      defaultZone: http://localhost:8761/eureka/
-## Graceful shutdown
-#
-#logging:
-#  level:
-#    org.hibernate.SQL: debug
-#    org.hibernate.orm.jdbc.bind: trace
-#
-#springdoc:
-#  swagger-ui:
-#    path: /swagger-ui.html
-#  api-docs:
-#    path: /v3/api-docs
-#
-#server:
-#  port: 8081
-
 spring:
   application:
     name: catalog-service
 
-  config:
-    import: optional:configserver:http://localhost:8888
+  datasource:
+#    url: jdbc:sqlserver://localhost:1433;databaseName=chinook_catalog;encrypt=false
+#    url: jdbc:sqlserver://host.docker.internal:1433;databaseName=chinook_catalog;encrypt=false
+#    url: jdbc:sqlserver://host.container.internal:1433;databaseName=chinook_catalog;encrypt=false
+#    url: "jdbc:postgresql://${CATEGORY_DB_HOST}:${DB_PORT}/${CATEGORY_DB_NAME}?sslmode=${DB_SSL_MODE}&channelBinding=${DB_CHANNEL_BINDING}"
+    url: jdbc:postgresql://catalog-db:5432/catalog
+
+    # application.properties ~ spring.datasource.url=jdbc:protocal://ip:port/db_name....
+#    username: ${CATEGORY_DB_USERNAME}
+#    password: ${CATEGORY_DB_PASSWORD}
+    username: cataloguser
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+#        physical_naming_strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+# Graceful shutdown
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+server:
+  port: 8081
+
+#  config:
+#    import: optional:configserver:http://localhost:8888

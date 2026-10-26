@@ -21,18 +21,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "Album")
+@Table(name = "album")
 public class Album {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "AlbumId")
+    @Column(name = "albumId")
     private Integer albumId;
 
-    @Column(name = "Title", nullable = false, length = 160)
+    @Column(name = "title", nullable = false, length = 160)
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ArtistId", nullable = false)
+    @JoinColumn(name = "artistId", nullable = false)
     private Artist artist;
 }

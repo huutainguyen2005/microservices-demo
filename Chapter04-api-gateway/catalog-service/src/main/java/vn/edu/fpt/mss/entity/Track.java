@@ -24,43 +24,43 @@ import org.hibernate.annotations.Where;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "Track")
+@Table(name = "track")
 @SQLDelete(sql = "UPDATE Track SET IsDeleted = 1 WHERE TrackId = ?")
 @Where(clause = "IsDeleted = 0")
 public class Track {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TrackId")
+    @Column(name = "trackId")
     private Integer trackId;
 
-    @Column(name = "Name", nullable = false, length = 200)
+    @Column(name = "name", nullable = false, length = 200)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "AlbumId")
+    @JoinColumn(name = "albumId")
     private Album album;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "MediaTypeId", nullable = false)
+    @JoinColumn(name = "mediaTypeId", nullable = false)
     private MediaType mediaType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "GenreId")
+    @JoinColumn(name = "genreId")
     private Genre genre;
 
-    @Column(name = "Composer", length = 220)
+    @Column(name = "composer", length = 220)
     private String composer;
 
-    @Column(name = "Milliseconds", nullable = false)
+    @Column(name = "milliseconds", nullable = false)
     private Integer milliseconds;
 
-    @Column(name = "Bytes")
+    @Column(name = "bytes")
     private Integer bytes;
 
-    @Column(name = "UnitPrice", nullable = false, precision = 10, scale = 2)
+    @Column(name = "unitPrice", nullable = false, precision = 10, scale = 2)
     private BigDecimal unitPrice;
 
-    @Column(name = "IsDeleted", nullable = false)
+    @Column(name = "isDeleted", nullable = false)
     private boolean deleted;
 }
